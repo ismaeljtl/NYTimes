@@ -1,0 +1,47 @@
+<div class="container">
+
+    <div class="row" *ngIf="!loading && filteredNews.length !== 0">
+        <div class="col-md-6">
+            <h1 class="mt-4 mb-3">Popular News</h1>
+        </div>
+        <div class="filter col-md-6 d-flex align-items-center">
+            <input type="text" class="form-control" placeholder="Search for a new" (input)="filter($event)" />
+        </div>
+    </div>
+
+    <div class="row" *ngIf="loading">
+        <app-loader></app-loader>
+    </div>
+    
+    <div class="row characters" *ngIf="!loading && filteredNews.length !== 0">
+        <div 
+            class="col-md-4 d-flex align-items-stretch" 
+            *ngFor="let new of filteredNews | 
+            paginate: { itemsPerPage: 30, currentPage: p, totalItems: totalNews }"
+        >
+            <div class="card mb-3">
+                <img *ngIf="new.multimedia !== null" src="{{ new.multimedia[2].url }}" class="card-img-top" alt="...">
+                <img *ngIf="new.multimedia === null" src="/assets/img/not-found.png" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title">{{new.title}} </h5>
+                    <p class="card-text">{{new.abstract}}</p>
+                    <a href="{{new.url}}" target="_blank" class="card-link">Go to the article</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row container text-center not-found" *ngIf="!loading && filteredNews.length === 0">
+        <img src="/assets/img/paper.png" alt="Not found">
+        <h2>It looks like there are no articles here... What about trying another one?</h2>
+        <a routerLink="/" class="link">← Go back</a>
+    </div>
+
+    <pagination-controls 
+        class="pagination" 
+        (pageChange)="pageChanged($event)" 
+        previousLabel="Prev"
+        *ngIf="!loading && filteredNews.length !== 0"
+    ></pagination-controls>
+
+</div>

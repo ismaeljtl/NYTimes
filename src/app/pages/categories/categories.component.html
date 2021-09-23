@@ -1,0 +1,16 @@
+<div class="container">
+
+    <div class="row" *ngIf="loading">
+        <app-loader></app-loader>
+    </div>
+    
+    <div class="categories" *ngIf="!loading">
+        <h1>What do you want to read today?</h1>
+        <span 
+            class="rounded-pill bg-secondary" 
+            *ngFor="let category of categories" 
+            [routerLink]="['/home', category.section]"
+        >{{ category.display_name }}</span>
+    </div>
+
+</div>

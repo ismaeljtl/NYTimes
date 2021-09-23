@@ -1,0 +1,51 @@
+.month-btn {
+    display: flex;
+    justify-content: right;
+    margin: 1.5rem 0 1rem;
+}
+
+.card {
+    img {
+        height: 190px;
+        object-fit: cover;
+    }
+    .card-body a {
+        color: #212529;
+        text-decoration: none;
+        font-weight: bold;
+    }
+    .card-text {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        text-decoration: none;
+    }
+}
+
+.link {
+    color: #212529;
+    text-decoration: none;
+}
+
+.not-found {
+    margin-top: 5rem;
+    img {
+        width: 350px;
+        margin: 0 auto;
+    }
+}
+
+pagination-controls {
+    justify-content: center;
+    margin-top: 1rem;
+    color: #212529;
+}
+
+@media screen and (max-width: 767px) {
+    .filter {
+        margin-bottom: 1rem;
+    }
+    .not-found {
+        margin: 1rem 0;
+    }
+}
